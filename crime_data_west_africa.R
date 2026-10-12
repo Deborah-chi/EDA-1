@@ -134,7 +134,7 @@ ggplot(
   mapping = aes(x = fct_infreq(country))
 ) + 
   geom_bar( 
-    colour = "darkred", fill = "tomato" 
+    colour = "red", fill = "navy" 
   )
 
 ## Labeling the axis -------------------------------------------------------
@@ -144,7 +144,7 @@ ggplot(
   mapping = aes(x = fct_infreq(country))
 ) + 
   geom_bar( 
-    colour = "darkred", fill = "tomato" 
+    colour = "red", fill = "navy" 
   ) + 
   labs( 
     x = "Country", 
@@ -175,7 +175,12 @@ ggplot(
 
 ## Numerical variable visualization using total_casualty ---------------------
 
-total_casualty <- crime_tbl_casualty |> 
+crime_tbl_casualty <- crime_tbl_casualty |> 
+  mutate(
+    total_casualty = fatalities + injured
+    )
+
+crime_tbl_casualty |> 
   summarize( 
     average_casualty = mean(total_casualty, na.rm = TRUE),
     median_casualty = median(total_casualty, na.rm = TRUE),
@@ -185,7 +190,6 @@ total_casualty <- crime_tbl_casualty |>
     maximum = max(total_casualty, na.rm = TRUE) 
   )
 
-total_casualty 
 
 ### Visualization of total_casualty -----------------------------------------
 
